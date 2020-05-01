@@ -67,9 +67,10 @@ const game = ()=> {
 
     // Compare the hands and see who wins. Update the winner text
     const compareHands = (playerChoice, computerChoice)=> {
-        // Update text
+        // Update text. Default the message to nothing.
         const winner = document.querySelector('.winner');
-        document.querySelector('.secret-message').textContent = '';
+        const msg = document.querySelector('.secret-message');
+        msg.textContent = '';
 
         if (playerChoice === computerChoice) {
             winner.textContent = 'Tie game!';
@@ -86,6 +87,13 @@ const game = ()=> {
             winner.textContent = 'You lose!';
             cScore++;
         }
+
+        // Extra messages based on score
+        if (cScore >= pScore+10) msg.textContent = 'Okay, just stop now. You\'re garbawge.';
+        else if (cScore >= pScore+5) msg.textContent = 'Bruh. You\'re getting rekt by a computer.';
+        else if (pScore >= cScore+10) msg.textContent = 'Wow, you made the computer cry!';
+        else if (pScore >= cScore+5) msg.textContent = 'OYEAH! Destroy!';
+
         updateScore();
     };
 
